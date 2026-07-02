@@ -1,8 +1,8 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int n=nums.length;
+        int p=nums.length;
         HashMap<Integer,Integer> hash=new HashMap<>();
-        for(int i=0;i<n;i++){
+        for(int i=0;i<p;i++){
             int search = target-nums[i];
             if(hash.containsKey(search)){
                 return new int[]{hash.get(search),i};
