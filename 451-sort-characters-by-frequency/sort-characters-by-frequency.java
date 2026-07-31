@@ -2,41 +2,48 @@ class Solution {
 
     public String frequencySort(String s) {
 
-        // Frequency Map
-        HashMap<Character, Integer> map = new HashMap<>();
+        // Result array to store the final answer
+        char[] res = new char[s.length()];
 
-        // Count frequency
+        // Frequency array for all ASCII characters
+        int[] freq = new int[128];
+
+        // Count the frequency of every character
         for (char ch : s.toCharArray()) {
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            freq[ch]++;
         }
 
-        // Store every character
-        List<Character> list = new ArrayList<>();
+        // Index where we will insert characters into the result
+        int ind = 0;
 
-        for (char ch : s.toCharArray()) {
-            list.add(ch);
-        }
+        // Continue until the result array is completely filled
+        while (ind < s.length()) {
 
-        // Sort by decreasing frequency
-        Collections.sort(list, (a, b) -> {
+            // Stores the maximum frequency found
+            int max = 0;
 
-            // Higher frequency comes first
-            if (!map.get(a).equals(map.get(b))) {
-                return map.get(b) - map.get(a);
+            // Stores the character having the maximum frequency
+            char maxch = 0;
+
+            // Find the character with the highest frequency
+            for (int i = 0; i < 128; i++) {
+
+                if (freq[i] > max) {
+                    max = freq[i];
+                    maxch = (char) i;
+                }
             }
 
-            // If frequencies are equal,
-            // any order is acceptable.
-            return a - b;
-        });
+            // Place the character 'maxch' exactly 'max' times
+            while (max-- > 0) {
+                res[ind++] = maxch;
+            }
 
-        // Build answer
-        StringBuilder ans = new StringBuilder();
-
-        for (char ch : list) {
-            ans.append(ch);
+            // Mark this character as processed
+            freq[maxch] = 0;
         }
 
-        return ans.toString();
+        // Convert character array into String
+        return new String(res);
     }
 }
