@@ -4,10 +4,13 @@ class Solution {
         if(s.length()!=t.length()){
             return false;
         }
-        for(int i =0;i<s.length();i++){
-            freq[s.charAt(i) - 'a']++;
-            freq[t.charAt(i) - 'a']--;
+        for(char ch : s.toCharArray()){
+            freq[ch - 'a']++;
         }
+        for(char ch : t.toCharArray()){
+            freq[ch - 'a']--;
+        }
+
         
         for(int i =0;i<freq.length;i++){
             if(freq[i]!=0){
