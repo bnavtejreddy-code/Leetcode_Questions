@@ -18,7 +18,7 @@ class Solution {
         return sum;
     }
 
-    static int convert(char ch) {
+    public int convert(char ch) {
         if (ch == 'I') return 1;
         if (ch == 'V') return 5;
         if (ch == 'X') return 10;
