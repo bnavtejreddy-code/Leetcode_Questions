@@ -1,5 +1,5 @@
 class Solution {
-    public int romanToInt(String s) {
+    public static int romanToInt(String s) {
         int sum = 0;
 
         for (int i = 0; i < s.length() - 1; i++) {
@@ -18,7 +18,7 @@ class Solution {
         return sum;
     }
 
-    public int convert(char ch) {
+    static int convert(char ch) {
         if (ch == 'I') return 1;
         if (ch == 'V') return 5;
         if (ch == 'X') return 10;
