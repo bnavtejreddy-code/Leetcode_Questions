@@ -1,5 +1,5 @@
 class Solution {
-    
+    //EXPANDING FROM MIDDLE
     int maxlength = 0;
     int start =0;
     public String longestPalindrome(String s) {
