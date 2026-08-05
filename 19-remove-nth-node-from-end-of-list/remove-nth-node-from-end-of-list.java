@@ -1,37 +1,29 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode temp = head;
-        int count =0;
-        if(head==null){
-            return null;
+
+        // Create a dummy node before the head
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        // Both pointers start from dummy
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+
+        // Move fast n+1 steps ahead
+        // This keeps slow one node before the node to delete
+        for (int i = 0; i <= n; i++) {
+            fast = fast.next;
         }
-        
-        while(temp!=null){
-            count+=1;
-            temp=temp.next;
+
+        // Move both pointers together
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
         }
-        int x = count - n +1;
-        if(x==1){
-            return head.next;
-        }
-        temp = head;
-        for(int i =1;i<x-1 && temp!=null;i++){
-            temp = temp.next;
-        }
-        
-        if(temp.next!=null){
-            temp.next=temp.next.next;
-        }
-        return head;
+
+        // Delete the target node
+        slow.next = slow.next.next;
+
+        return dummy.next;
     }
 }
