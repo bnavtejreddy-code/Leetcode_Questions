@@ -24,13 +24,13 @@ class Solution {
         ListNode second = newhead;
         while(second!=null){
             if(first.val != second.val){
-                newhead = reverseL(newhead);
+                
                 return false;
             }
             second = second.next;
             first = first.next;
         }
-        newhead = reverseL(newhead);
+        
         return true;
     }
     public ListNode reverseL(ListNode head){
