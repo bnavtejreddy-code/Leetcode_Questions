@@ -1,17 +1,17 @@
 class Solution {
     public int subarraySum(int[] nums, int k) {
-        int prefixsum=0;
-        int n=nums.length;
-        int count=0;
-        HashMap<Integer,Integer> prefix=new HashMap<>();
-        prefix.put(0,1);
-        for(int i =0;i<n;i++){
-            prefixsum=prefixsum+nums[i];
-            int remove = prefixsum-k;
-            if(prefix.containsKey(remove)){
-                count=count+prefix.get(remove);
+        int prefix = 0;
+        int count = 0;
+        HashMap<Integer,Integer> hash=new HashMap<>();
+        hash.put(0,1);
+        for(int i = 0;i<nums.length;i++){
+            prefix = prefix + nums[i];
+            int search = prefix-k;
+            if(hash.containsKey(search)){
+                count=count + hash.get(search);
+
             }
-            prefix.put(prefixsum,prefix.getOrDefault(prefixsum,0)+1);
+            hash.put(prefix,hash.getOrDefault(prefix,0)+1);
         }
         return count;
     }
